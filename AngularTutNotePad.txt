@@ -1,0 +1,1066 @@
+class=11 ----Angular----------Get input box value and display ---------------channel = Code step by step
+app.component.ts---
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  data = 'Code with step by step';
+  displayValue: string='';
+  getName(name: string)
+  {
+    this.displayValue=name;
+  }
+}
+
+app.component.html---
+
+<h1>Hello Angular {{title}}</h1>
+<input type="text" #name (keyup)="getName(name.value)" name="name" placeholder="Enter name"/>
+<p>name is :{{displayValue}}</p>
+
+class=12 ------------------------------------ Make counter---------------------
+--app.component.html---
+
+<h1>Hello Angular {{title}}</h1>
+<button (click)="func1('add')">++</button>
+<p>count is = {{count}}</p>
+<button (click)="func1('minus')">--</button>
+
+--app.component.ts---
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  count = 0;
+  func1(name: string)
+  {
+    name === 'add' ? this.count++ : this.count--;
+  }
+}
+
+class 13--------------------------------------------------------------
+
+global css
+
+class 14--------------------------------------------
+html me property binding
+
+<input type="text" name="user-name" value={{name}} disabled={{disabled}}>  //interpolation
+
+<input type="text" name="user-name" [value]=name [disabled]=disabled>   //property binding
+
+class 15--------------------------------------------------------- if else --------------------------
+
+--app.component.html
+
+<h1>Hello Angular {{title}}</h1>
+<h1 *ngIf="show; then ifblock else elseblock"></h1>
+
+<ng-template #ifblock>
+<h1>if condition</h1>
+</ng-template>
+
+<ng-template #elseblock>
+  <h1>else condition</h1>
+</ng-template>
+
+--app.component.ts---
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  show = false;
+}
+
+--class 16---------------------------------------------------
+--app.component.ts---
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  color = 'green';
+}
+
+--app.component.html----
+<h1>Hello Angular {{title}}</h1>
+<div [ngSwitch]="color">
+  <h1 *ngSwitchCase="'red'" style="color: red;">Red color</h1>
+  <h1 *ngSwitchCase="'blue'" style="color: blue">Blue color</h1>
+  <h1 *ngSwitchCase="'green'" style="color: green;">Green color</h1>
+  <h1 *ngSwitchDefault>Unknown color</h1>
+</div>
+
+--class 17--------------------------------------------------------
+--app.component.ts--
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  users = ["sachin","aryan","sehwag", "kohli"];
+  userDetails = [
+    {name: 'sachin', email:'sachin@gmail.com', phoneNo:'8888'},
+    {name: 'aryan', email:'aryan@gmail.com', phoneNo:'1111'},
+    {name: 'sehwag', email:'sehwag@gmail.com', phoneNo:'2222'},
+    {name: 'kohli', email:'kohli@gmail.com', phoneNo:'3333'}
+  ];
+}
+
+--app.component.html
+<h1>Hello Angular {{title}}</h1>
+<h1 *ngFor="let name of users">Name of :{{name}}</h1>
+
+<h1 *ngFor="let items of userDetails">{{items.name}}--{{items.email}}--{{items.phoneNo}}</h1>
+
+--class 19----------------------------------------------------------------
+app.component.ts--
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  users = ["sachin","aryan","sehwag", "kohli"];
+  userDetails = [
+    {name: 'sachin', email:'sachin@gmail.com', phoneNo:'8888', account:['facebook', 'insta', 'gmail']},
+    {name: 'aryan', email:'aryan@gmail.com', phoneNo:'1111', account:['whatsapp', 'yahoo', 'gmail']},
+    {name: 'sehwag', email:'sehwag@gmail.com', phoneNo:'2222', account:['google', 'netflix', 'moj']},
+    {name: 'kohli', email:'kohli@gmail.com', phoneNo:'3333', account:['whatsapp', 'yahoo', 'gmail']}
+  ];
+}
+
+--app.component.html---
+<h1>Hello Angular {{title}}</h1>
+<ul *ngFor="let user of userDetails">
+  <li>{{user.name}}</li>
+  <li>{{user.phoneNo}}</li>
+  <li>Social Account</li>
+  <ul *ngFor="let account of user.account">
+    <li>{{account}}</li>
+  </ul>
+</ul>
+--class 20--------------------------------------------------------------------
+--app.component.ts--
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  color= 'red';
+  bgcolor= 'green';
+
+  updateColor()
+  {
+    this.color='blue',
+    this.bgcolor='red'
+  }
+}
+
+--app.component.html---
+<h1>Hello Angular {{title}}</h1>
+<h1 [style.color]="color" [style.backgroundColor]="bgcolor">{{title}}</h1>
+<button (click)="updateColor()">Update color</button>
+
+--class 21----------------------------------------------------------------
+style binding
+
+--class 22----------------------------------------------------------------
+navbar
+
+--class 23------------------------------------------------------------------
+basic angular form
+
+--app.component.html---
+
+<h1>Hello Angular {{title}}</h1>
+<form #basicForm="ngForm" (ngSubmit)="getData(basicForm.value)">
+    <input type="text" ngModel name="user" placeholder="Enter User Name">
+    <br /><br />
+    <input type="text" ngModel name="email" placeholder="Enter User Email">
+    <br /><br />
+    <input type="text" ngModel name="password" placeholder="Enter User password">
+    <br /><br />
+    <button>Register</button>
+</form>
+
+<ul>
+    <li>{{userData.user}}</li>
+    <li>{{userData.email}}</li>
+    <li>{{userData.password}}</li>
+</ul>
+
+
+--app.component.ts--
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  userData:any={};
+  getData(data:any)
+  {
+    console.log(data);
+    this.userData=data;
+  }
+
+  
+}
+--class 26------------------------------------------------------------------
+app.component.ts--
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  list:any[]=[];
+
+  addTask(data:String){
+    console.log(data);
+    this.list.push({id:this.list.length, name:data});
+    console.warn(this.list);
+  }
+
+  removeTask(id:number){
+    console.warn(id);
+    this.list=this.list.filter(item=>item.id!==id);
+  }
+
+  
+}
+
+--app.component.html-------------------------------------
+<h1>Hello Angular {{title}}</h1>
+<input type="text" placeholder="Enter here" #task>
+<br /><br />
+<button (click)="addTask(task.value)">Add task</button>
+
+<br />
+<ul *ngFor="let item of list">
+   <li>{{item.name}}<button (click)="removeTask(item.id)">Remove Task</button></li>
+</ul>
+
+---class 27-----------------------data sendig parent to child--------------------------------
+--app.component.ts--
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'blog';
+  data = 10;
+
+  updateValue(){
+    this.data = Math.floor(Math.random()*10);
+  }
+  
+}
+
+--app.component.html---
+<h1>Hello Angular {{title}}</h1>
+<app-child [item]="data"></app-child>
+<button (click)="updateValue()">udpdate value</button>
+
+--child.comp.ts--------
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css']
+})
+export class ChildComponent {
+
+ @Input() item =0;
+}
+
+--child.component.html
+<h1>child works!</h1>
+<h1>{{item}}</h1>
+
+---class 28----------------------------child to parent---------------
+--app.component.ts--
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Reusabel Components';
+  userDetails=[
+    {name: 'Anil', email:'anil@gmail.com'},
+    {name: 'Kapil', email:'kapil@gmail.com'},
+    {name: 'sunil', email:'sunil@gmail.com'},
+    {name: 'Sachin', email:'sachin@gmail.com'},
+  ]
+  
+}
+
+--app.component.html---
+<h1>Hello Angular {{title}}</h1>
+<ul *ngFor="let user of userDetails">
+    <app-user-details [item]="user"></app-user-details>
+</ul>
+
+--user-details.component.ts--------
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-user-details',
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.css']
+})
+export class UserDetailsComponent {
+
+  @Input() item:{name:string, email:string}={name:'', email:''};
+}
+
+--user-details.component.html-------
+<li>{{item.name}}</li>
+<li>{{item.email}}</li>
+
+--user-details.component.css-------
+li {
+    display: inline-block;
+    padding: 10px;
+    background-color: skyblue;
+    width: 30%;
+    color: black;
+    border-left: 1px solid red;
+}
+------class 29 -------------------------Sending data child to parent-----------
+--app.component.ts--
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Send data child to parent component';
+  updateData(item:String){
+    console.warn(item);
+  }
+}
+
+--app.component.html---
+<h1>{{title}}</h1>
+<app-child (updateDataEvent)="updateData($event)"></app-child>
+
+--child.component.ts--------
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css']
+})
+export class ChildComponent {
+
+@Output() updateDataEvent =  new EventEmitter<String>();
+}
+
+--child.component.html---
+<h1>child works!</h1>
+<input type="text" #box />
+<button (click)="updateDataEvent.emit(box.value)">Update Data</button>
+
+------class 30---------------Two way binding-----------------------------------
+defination: same time pr property ko display and update karna
+
+--app.component.ts--
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Send data child to parent component';
+  name:any;
+}
+
+
+--app.component.html---
+<h1>{{title}}</h1>
+<input type="text" [(ngModel)]="name">
+<h1>{{name}}</h1>
+
+---class 31---------------------Template Referece variable------------- 
+--app.component.html---
+<h1>{{title}}</h1>
+<input type="text" #box>
+<button (click)="getVal(box.value)">Call Function</button>
+
+--app.component.ts--
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Send data child to parent component';
+  name:any;
+  getVal(item:any){
+    console.log(item);
+  }
+}
+
+---class 32-----------------------basic of type script-------------------------------
+
+---class 33-----------------------basic of pipes-------------------------------
+---class 34-----------------------advance of pipes-------------------------------
+---class 35-----------------------custom of pipes-------------------------------
+---class 36-----------------------Forms-------------------------------
+--class 37------------------------Template driven form------------------------------
+--app.component.ts--
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Send data child to parent component';
+  name:any;
+  userLogin(item:any){
+    console.warn(item);
+  }
+}
+
+--app.component.html---
+<h1>{{title}}</h1>
+<form #loginForm="ngForm" (ngSubmit)="userLogin(loginForm.value)">
+<input type="text" ngModel placeholder="Enter name" name="name">
+<br/><br/>
+<input type="password" ngModel placeholder="Enter password" name="password">
+<br/>
+<button >Login in</button>
+</form>
+
+-----class 38-------------
+
+--app.component.ts--
+
+import { Component } from '@angular/core';
+import { FormControl, FormGroup} from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Send data child to parent component';
+  loginForm = new FormGroup({
+    user:new FormControl(''),
+    password: new FormControl('')
+  })
+
+  userLogin(){
+    console.warn(this.loginForm.value);
+  }
+}
+--app.component.html---
+
+<h1>{{title}}</h1>
+<form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+<input type="text" ngModel placeholder="Enter name" name="name" formControlName="user">
+<br/><br/>
+<input type="password" ngModel placeholder="Enter password" name="password" formControlName="password">
+<br/>
+<button >Login in</button>
+</form>
+
+--class 39----------Reactive form validation-------------------------------------------------
+
+--app.component.ts--
+
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Send data child to parent component';
+  loginForm = new FormGroup({
+    user:new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)])
+  })
+
+  userLogin(){
+    console.warn(this.loginForm.value);
+  }
+
+  get user(){
+    return this.loginForm.get('user');
+  }
+
+  get password(){
+    return this.loginForm.get("password");
+  }
+}
+
+--app.component.html---
+
+<h1>{{title}}</h1>
+<form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+<input type="text" ngModel placeholder="Enter name" name="name" formControlName="user">
+<br/><br/>
+<span style="color: red" *ngIf="user && user.invalid && user.touched">This is field is not valid</span>
+<br/><br/>
+<input type="password" ngModel placeholder="Enter password" name="password" formControlName="password">
+<br/><br/>
+<span style="color: red" *ngIf="password && password.invalid && password.touched">This is field is not valid</span>
+
+<br/>
+<button [disabled]="loginForm.invalid">Login in</button>
+</form>
+
+---class 40--------------directives-------
+
+red-el.directive.ts
+
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appRedEl]'
+})
+export class RedElDirective {
+
+  constructor(el:ElementRef) { }
+  el.nativeElement.style.color=red;
+}
+
+--app.component.html---
+
+<h1>{{title}}</h1>
+<h1 appRedEl>{{title}}</h1>
+
+--class 41-----------Routing--------------------------------------------------------------
+--app-routing.module.ts
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+
+const routes: Routes = [
+  {
+    path:'about',
+    component:AboutComponent
+  },
+  {
+    path:'user',
+    component:UserComponent
+  },
+  {
+    path:'',
+    component:HomeComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+--app.component.html---
+<h1>Code step by step</h1>
+<a routerLink="">home</a>
+<br />
+<a routerLink="user">user</a>
+<br />
+<a routerLink="about">about</a>
+
+<router-outlet></router-outlet>
+
+--class 42--------------Dynamic Routing--------------------------------------------------------------
+
+--app-routing.module.ts
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+
+const routes: Routes = [
+  {
+    path:'about',
+    component:AboutComponent
+  },
+  {
+    path:'user/:id',
+    component:UserComponent
+  },
+  {
+    path:'',
+    component:HomeComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+--app.component.html---
+<h1>Code step by step</h1>
+<a routerLink="">home</a>
+<br />
+<a routerLink="user">user</a>
+<br />
+<a routerLink="about">about</a>
+
+<router-outlet></router-outlet>
+
+<br />
+<a routerLink="user/20">anil</a>
+<br />
+<a routerLink="user/30">sunil</a>
+<br />
+<a routerLink="user/40">kapil</a>
+
+--app.component.ts--
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
+})
+export class UserComponent implements OnInit{
+
+  constructor(private route: ActivatedRoute){}
+
+  ngOnInit(): void {
+      console.warn("user id is ", this.route.snapshot.paramMap.get('id'));
+  }
+}
+
+-----class 43--------------- 404 page-----------------------------------------------------
+
+
+
+------class44--------------child routing------------------------------------------
+
+--app-routing.module.ts
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutCompanyComponent } from './about-company/about-company.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { NoPageComponent } from './no-page/no-page.component';
+import { UserComponent } from './user/user.component';
+
+const routes: Routes = [
+  {
+    path:'about',
+    component:AboutComponent,
+    children:[
+      {path:'company', component:AboutCompanyComponent},
+      {path:'me', component:AboutMeComponent}
+    ]
+  },
+  {
+    path:'user/:id',
+    component:UserComponent
+  },
+  {
+    path:'',
+    component:HomeComponent
+  },
+  {
+    path:'**',
+    component:NoPageComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+--about.component.html
+
+<h1>About Everything!!!!</h1>
+<a routerLink="company">About Company</a>
+<br/>
+<a routerLink="me">About Me</a>
+
+<router-outlet></router-outlet>
+
+-------class 45------------------------- services theory-----------------------------------------
+
+-------class 46------------------------- services -----------------------------------------
+
+--userdata.service.ts
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserdataService {
+
+  constructor() { }
+
+  users(){
+    return [
+      {name:'Anil', age:28, email:'anil@gmail.com'},
+      {name:'Sunil', age:25, email:'Sunil@gmail.com'},
+      {name:'Kapil', age:30, email:'Kapil@gmail.com'}
+    ]
+  }
+}
+
+--footer.component.ts
+
+import { Component } from '@angular/core';
+import {UserdataService} from '../services/userdata.service';
+
+@Component({
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css']
+})
+export class FooterComponent {
+
+  users:any;
+
+  constructor(private userdata:UserdataService){
+    console.warn("userdata", userdata.users());
+    this.users=userdata.users();
+  }
+}
+
+--footer.component.html
+
+<div class="footer">
+    <h1>
+        Footer
+    </h1>
+
+    <ul *ngFor="let user of users">
+        <li>
+          {{user.name}}
+        </li>
+      </ul>
+</div>
+
+
+--app.component.ts
+
+import { Component } from '@angular/core';
+import {UserdataService} from './services/userdata.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'routingTut';
+  users:any;
+
+  constructor(private userdata:UserdataService){
+    console.warn("userdata", userdata.users());
+    this.users=userdata.users();
+  }
+}
+
+--app.component.html
+<h1>Code step by step</h1>
+<ul *ngFor="let user of users">
+  <li>
+    {{user.name}}
+  </li>
+</ul>
+<app-footer></app-footer>
+
+--class 47-------------------calling api-------------------------------------------
+
+--userdata.service.ts
+
+import { Injectable } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserdataService {
+
+  url = "http//localhost:3000/users"
+  constructor(private http:HttpClient) { }
+  users(){
+    return this.http.get(this.url);
+  }
+
+  
+}
+
+--app.module.ts
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule} from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+   
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+--app.component.ts
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule} from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+   
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+--app.component.html
+<h1>Code step by step</h1>
+
+<ul>
+    <li *ngFor="let user of users">
+        {{user.name}}
+    </li>
+</ul>
+--class 48--------------------------Post api-------------------------------------------
+
+--userdata.service.ts
+
+import { Injectable } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserdataService {
+
+  url = "http//localhost:3000/users"
+  constructor(private http:HttpClient) { }
+  users(){
+    return this.http.get(this.url);
+  }
+
+  saveUser(data:any){
+    return this.http.post(this.url, data);
+  }
+}
+
+--app.component.html
+
+<h1>Code step by step</h1>
+
+<form #usersForm="ngForm" (ngSubmit="getUserFormData(usersForm.value)">
+    <input type="text" ngModel name="name" placeholder="Enter your name" />
+    <br /><br />
+    <input type="text" ngModel name="email" placeholder="Enter your email" />
+    <br /><br />
+    <input type="password" ngModel name="password" placeholder="Enter your password" />
+    <br /><br />
+    <button>Add new user</button>
+</form>
+
+--app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule} from '@angular/common/http';
+import { FormsModule} from '@angular/forms'
+
+@NgModule({
+  declarations: [
+    AppComponent,
+   
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+--app.component.ts
+import { Component } from '@angular/core';
+import { UserdataService } from './services/userdata.service'
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'routingTut';
+
+  users:any;
+  constructor(private userData:UserdataService){
+    userData.users().subscribe((data)=>{
+      console.warn("data", data);
+      this.users=data;
+    });
+   
+  }
+
+  getUserFormData(data:any){
+
+    this.userData.saveUser(data).subscribe((result)=>{
+      console.warn(data);
+    })
+  }
+  
+}
+
+--class 49 ---------------------------interface or model-------------------------
+
+app.component.ts
+
+import { Component } from '@angular/core';
+
+interface dataType{
+  name:string,
+  id:number,
+  indian:boolean,
+  address:any
+}
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'routingTut';
+
+  getData(){
+    const data:dataType = {
+      name:"sachin",
+      id:1,
+      indian:true,
+      address:"42, noida up"
+    }
+  }
+
+}
+
+--class 50-----------------------------Recap Module and Routing --------------------------------------------------------------
+
+--class 51-----------------------------Routing Module -----------------------------------
+child module me routing karna sikha hai is class me 
+
+--class 52-----------------------------Group Routing --------------------------------------------------------------
+agar different-different module ki routing same name se ho to is problem ko solve karne ke liye Group Routing ka use karte hai
+
+
+
+
+
+
